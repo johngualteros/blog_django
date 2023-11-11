@@ -1,0 +1,38 @@
+# docker-compose up --build
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        - DEV=true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+      - dev-static-data:/vol/web
+    command: >
+      sh -c "python manage.py wait_for_db && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    environment:
+        - DB_HOST=db
+        - DB_NAME=blog
+        - DB_USER=postgres
+        - DB_PASS=secret
+        - DEBUG=1
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12-alpine
+    environment:
+      - POSTGRES_DB=blog
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+
+    volumes:
+      - dev-db-data-blog:/var/lib/postgresql/data/
+
+volumes:
+  dev-db-data-blog:
+  dev-static-data:
