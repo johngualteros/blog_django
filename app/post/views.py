@@ -3,6 +3,8 @@ Views for recipe app
 """
 from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter, OpenApiExample, OpenApiTypes
 from rest_framework import viewsets, mixins, status
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
@@ -30,7 +32,7 @@ class PostViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Return objects for the current authenticated user only"""
         queryset = self.queryset
-        return queryset.filter(user=self.request.user).order_by('-id').distinct()
+        return queryset.filter(user=self.request.user).order_by('-id')
 
     def get_serializer_class(self):
         """Return appropriate serializer class"""
@@ -44,8 +46,7 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-class BasePostAttrViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin,
-                            viewsets.GenericViewSet):
+class BasePostAttrViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     """Base view set for user owned recipe attributes"""
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
@@ -56,10 +57,25 @@ class BasePostAttrViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, mix
         queryset = self.queryset
         if assigned_only:
             queryset = queryset.filter(post__isnull=False)
-        return queryset.filter(user=self.request.user).order_by('-title').distinct()
+        return queryset.filter(user=self.request.user).order_by('-name').distinct()
 
 
-class CommentViewSet(BasePostAttrViewSet):
+class CommentViewSet(viewsets.ModelViewSet):
     """Manage comments in the database"""
     serializer_class = serializers.CommentSerializer
     queryset = Comment.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        """Return objects for the current authenticated user only"""
+        assigned_only = bool(int(self.request.query_params.get('assigned_only', 0)))
+        queryset = self.queryset
+        if assigned_only:
+            queryset = queryset.filter(post__isnull=False)
+        return queryset.filter(user=self.request.user).order_by('-name').distinct()
+
+    def perform_create(self, serializer):
+        """Create a new comment"""
+        serializer.save(user=self.request.user)
+
