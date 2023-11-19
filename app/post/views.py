@@ -6,7 +6,7 @@ from rest_framework import viewsets, mixins, status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-from core.models import Post
+from core.models import Post, Comment
 
 from post import serializers
 
@@ -16,7 +16,7 @@ from post import serializers
         description='List all posts',
     ),
 )
-class RecipeViewSet(viewsets.ModelViewSet):
+class PostViewSet(viewsets.ModelViewSet):
     """Manage recipes in the database"""
     serializer_class = serializers.PostDetailSerializer
     queryset = Post.objects.all()
@@ -44,7 +44,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-class BaseRecipeAttrViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin,
+class BasePostAttrViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin,
                             viewsets.GenericViewSet):
     """Base view set for user owned recipe attributes"""
     authentication_classes = (TokenAuthentication,)
@@ -57,3 +57,9 @@ class BaseRecipeAttrViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, m
         if assigned_only:
             queryset = queryset.filter(post__isnull=False)
         return queryset.filter(user=self.request.user).order_by('-title').distinct()
+
+
+class CommentViewSet(BasePostAttrViewSet):
+    """Manage comments in the database"""
+    serializer_class = serializers.CommentSerializer
+    queryset = Comment.objects.all()

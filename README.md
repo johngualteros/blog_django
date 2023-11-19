@@ -1,2 +1,2 @@
-# recipe-app-api
-Recipe api project. backend
+docker-compose run --rm app sh -c "python manage.py startapp post"
+

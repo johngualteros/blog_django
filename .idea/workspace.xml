@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b748d159-8016-4e5b-9c10-1f3f5ce8ec51" name="Changes" comment="Deployment">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/post/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/post/urls.py" afterDir="false" />
+    <list default="true" id="b748d159-8016-4e5b-9c10-1f3f5ce8ec51" name="Changes" comment="adding post section">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/post/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/post/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/post/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/post/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/post/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/post/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/post/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/post/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/post/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +59,11 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -120,6 +123,7 @@
       <workItem from="1698597006462" duration="276000" />
       <workItem from="1699212550021" duration="680000" />
       <workItem from="1699714818429" duration="6476000" />
+      <workItem from="1700408691769" duration="6729000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project">
       <option name="closed" value="true" />
@@ -161,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697996699655</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="adding post section">
+      <option name="closed" value="true" />
+      <created>1700408912363</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700408912363</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +196,8 @@
     <MESSAGE value="Updating readme" />
     <MESSAGE value="Final app" />
     <MESSAGE value="Deployment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deployment" />
+    <MESSAGE value="adding post section" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding post section" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/recipe_app_api$.coverage" NAME=" Coverage Results" MODIFIED="1693782953113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/core/tests" />

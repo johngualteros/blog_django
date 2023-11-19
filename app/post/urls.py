@@ -3,7 +3,8 @@ from rest_framework.routers import DefaultRouter
 from post import views
 
 router = DefaultRouter()
-router.register('posts', views.RecipeViewSet)
+router.register('', views.PostViewSet)
+router.register('comments', views.CommentViewSet)
 
 app_name = 'post'
 
