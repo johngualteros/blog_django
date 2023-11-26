@@ -34,7 +34,7 @@ class CreateUserView(generics.CreateAPIView):
 
         # Envía un correo electrónico después de crear el usuario
         subject = 'Bienvenido a nuestra plataforma'
-        message = f'Hola {user.username},\n\n¡Gracias por registrarte en nuestra plataforma!'
+        message = f'Hola {user.name},\n\n¡Gracias por registrarte en nuestra plataforma!'
         from_email = 'noreply@example.com'
         recipient_list = [user.email]
 
