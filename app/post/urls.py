@@ -3,11 +3,11 @@ from rest_framework.routers import DefaultRouter
 from post import views
 
 router = DefaultRouter()
-router.register('', views.PostViewSet)
-router.register(r'comments', views.CommentViewSet, basename='comment')
+router.register('posts', views.PostViewSet)
+router.register('comments', views.CommentViewSet)
 
 app_name = 'post'
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]

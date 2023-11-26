@@ -46,20 +46,11 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 
-class BasePostAttrViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
-    """Base view set for user owned recipe attributes"""
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
-
-    def get_queryset(self):
-        """Return objects for the current authenticated user only"""
-        assigned_only = bool(int(self.request.query_params.get('assigned_only', 0)))
-        queryset = self.queryset
-        if assigned_only:
-            queryset = queryset.filter(post__isnull=False)
-        return queryset.filter(user=self.request.user).order_by('-name').distinct()
-
-
+@extend_schema_view(
+    list=extend_schema(
+        description='List all comments',
+    ),
+)
 class CommentViewSet(viewsets.ModelViewSet):
     """Manage comments in the database"""
     serializer_class = serializers.CommentSerializer
@@ -78,4 +69,3 @@ class CommentViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Create a new comment"""
         serializer.save(user=self.request.user)
-
