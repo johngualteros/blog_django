@@ -4,11 +4,18 @@ from core.models import Post, Comment
 
 class CommentSerializer(serializers.ModelSerializer):
     """Serializer for Comment objects"""
+    user = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Comment
-        fields = ('id', 'content', 'created_at', 'updated_at')
-        read_only_fields = ('id',)
+        fields = ('id', 'content', 'created_at', 'updated_at', 'user')
+        read_only_fields = ('id', 'user')
+
+    def create(self, validated_data):
+        """Create a new post"""
+        comment = Comment.objects.create(**validated_data)
+        auth_user = self.context['request'].user
+        return comment
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -22,13 +29,17 @@ class PostSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create a new post"""
+        comments = validated_data.pop('comments', [])
         post = Post.objects.create(**validated_data)
         auth_user = self.context['request'].user
+        for comment in comments:
+            comment_object, created = Comment.objects.get_or_create(content=comment['content'], user=auth_user)
+            post.comments.add(comment_object)
         return post
 
     def update(self, instance, validated_data):
         """Update a post"""
-        comments = validated_data.pop('comments')
+        comments = validated_data.pop('comments', [])
         post = super().update(instance, validated_data)
         post.comments.clear()
         user = self.context['request'].user
@@ -47,5 +58,5 @@ class PostDetailSerializer(PostSerializer):
 
     class Meta:
         model = Post
-        fields = ('id', 'title', 'content', 'user', 'created_at', 'updated_at')
+        fields = ('id', 'title', 'content', 'user', 'created_at', 'updated_at', 'comments')
         read_only_fields = ('id', 'created_at', 'updated_at', 'user')

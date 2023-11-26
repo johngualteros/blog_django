@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b748d159-8016-4e5b-9c10-1f3f5ce8ec51" name="Changes" comment="change the send email name">
+    <list default="true" id="b748d159-8016-4e5b-9c10-1f3f5ce8ec51" name="Changes" comment="fix create comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/post/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/post/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/post/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/post/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/post/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/post/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +119,7 @@
       <workItem from="1699714818429" duration="6476000" />
       <workItem from="1700408691769" duration="10960000" />
       <workItem from="1700961057440" duration="469000" />
-      <workItem from="1701010368558" duration="2424000" />
+      <workItem from="1701010368558" duration="4306000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project">
       <option name="closed" value="true" />
@@ -202,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701012193290</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix create comments">
+      <option name="closed" value="true" />
+      <created>1701013651462</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1701013651462</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +237,8 @@
     <MESSAGE value="comments doesn't work" />
     <MESSAGE value="perform send email when register a user" />
     <MESSAGE value="change the send email name" />
-    <option name="LAST_COMMIT_MESSAGE" value="change the send email name" />
+    <MESSAGE value="fix create comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix create comments" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/recipe_app_api$.coverage" NAME=" Coverage Results" MODIFIED="1693782953113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/core/tests" />
