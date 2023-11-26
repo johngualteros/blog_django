@@ -63,7 +63,7 @@ class Post(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    comments = models.ManyToManyField('Comment')
+    comments = models.ManyToManyField('Comment', related_name='post_comments')
 
     def __str__(self):
         return self.title
@@ -78,6 +78,7 @@ class Comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='post_comments')
 
     def __str__(self):
         return self.content

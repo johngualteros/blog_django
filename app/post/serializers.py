@@ -8,18 +8,24 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('id', 'content', 'created_at', 'updated_at', 'user')
+        fields = ('id', 'content', 'created_at', 'updated_at', 'user', 'post')
         read_only_fields = ('id', 'user')
 
     def create(self, validated_data):
-        """Create a new post"""
-        comment = Comment.objects.create(**validated_data)
+        """Create a new comment"""
+        post_id = validated_data.pop('post')
         auth_user = self.context['request'].user
+
+        comment = Comment.objects.create(user=auth_user, **validated_data)
+
+        post = Post.objects.get(id=post_id, user=auth_user)
+        post.comments.add(comment)
+
         return comment
 
 
+
 class PostSerializer(serializers.ModelSerializer):
-    """Serializer for Post objects"""
     comments = CommentSerializer(many=True, required=False)
 
     class Meta:
@@ -28,28 +34,30 @@ class PostSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
     def create(self, validated_data):
-        """Create a new post"""
-        comments = validated_data.pop('comments', [])
+        comments_data = validated_data.pop('comments', [])
         post = Post.objects.create(**validated_data)
         auth_user = self.context['request'].user
-        for comment in comments:
-            comment_object, created = Comment.objects.get_or_create(content=comment['content'], user=auth_user)
-            post.comments.add(comment_object)
+
+        post.comments.set(
+            Comment.objects.create(user=auth_user, **comment_data)
+            for comment_data in comments_data
+        )
+
         return post
 
     def update(self, instance, validated_data):
-        """Update a post"""
-        comments = validated_data.pop('comments', [])
+        comments_data = validated_data.pop('comments', [])
         post = super().update(instance, validated_data)
+
+        auth_user = self.context['request'].user
         post.comments.clear()
-        user = self.context['request'].user
-        for comment in comments:
-            comment_object, created = Comment.objects.get_or_create(
-                user=user,
-                content=comment['content']
-            )
-            post.comments.add(comment_object)
+        post.comments.set(
+            Comment.objects.create(user=auth_user, **comment_data)
+            for comment_data in comments_data
+        )
+
         return post
+
 
 
 class PostDetailSerializer(PostSerializer):
