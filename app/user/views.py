@@ -15,9 +15,8 @@ class SendEmailView(APIView):
     def post(self, request, *args, **kwargs):
         subject = request.data.get('subject', '')
         message = request.data.get('message', '')
-        from_email = 'tu-correo@example.com'
+        from_email = 'gualterosjohn40@gmail.com'
         recipient_list = [request.data.get('recipient', '')]
-
         try:
             send_mail(subject, message, from_email, recipient_list)
             return Response({'message': 'Email sent successfully'}, status=status.HTTP_200_OK)
