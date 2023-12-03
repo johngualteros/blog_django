@@ -1,5 +1,27 @@
 from rest_framework import serializers
-from core.models import Post, Comment
+from core.models import Post, Comment, Like
+
+
+class LikeSerializer(serializers.ModelSerializer):
+    """Serializer for Like objects"""
+    user = serializers.StringRelatedField(read_only=True)
+
+    class Meta:
+        model = Like
+        fields = ('id', 'user', 'post')
+        read_only_fields = ('id', 'user')
+
+    def create(self, validated_data):
+        """Create a new like"""
+        post_id = validated_data.pop('post')
+        auth_user = self.context['request'].user
+
+        like = Like.objects.create(user=auth_user, **validated_data)
+
+        post = Post.objects.get(id=post_id, user=auth_user)
+        post.likes.add(like)
+
+        return like
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -22,7 +44,6 @@ class CommentSerializer(serializers.ModelSerializer):
         post.comments.add(comment)
 
         return comment
-
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -57,7 +78,6 @@ class PostSerializer(serializers.ModelSerializer):
         )
 
         return post
-
 
 
 class PostDetailSerializer(PostSerializer):

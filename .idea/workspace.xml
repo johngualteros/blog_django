@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b748d159-8016-4e5b-9c10-1f3f5ce8ec51" name="Changes" comment="improve send emails">
+    <list default="true" id="b748d159-8016-4e5b-9c10-1f3f5ce8ec51" name="Changes" comment="post id in comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/post/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/post/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +117,8 @@
       <workItem from="1699714818429" duration="6476000" />
       <workItem from="1700408691769" duration="10960000" />
       <workItem from="1700961057440" duration="469000" />
-      <workItem from="1701010368558" duration="6122000" />
+      <workItem from="1701010368558" duration="6358000" />
+      <workItem from="1701566143317" duration="16000" />
     </task>
     <task id="LOCAL-00001" summary="Initial project">
       <option name="closed" value="true" />
@@ -225,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701015820726</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="post id in comments">
+      <option name="closed" value="true" />
+      <created>1701017229527</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1701017229527</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +263,8 @@
     <MESSAGE value="fix create comments" />
     <MESSAGE value="fix create comments 2" />
     <MESSAGE value="improve send emails" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve send emails" />
+    <MESSAGE value="post id in comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="post id in comments" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/recipe_app_api$.coverage" NAME=" Coverage Results" MODIFIED="1693782953113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/app/core/tests" />

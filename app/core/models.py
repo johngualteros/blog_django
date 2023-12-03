@@ -82,3 +82,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+
+class Like(models.Model):
+    """Like object"""
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='post_likes')
+
+    def __str__(self):
+        return self.user.name
